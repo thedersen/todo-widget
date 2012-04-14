@@ -90,7 +90,7 @@ $(function(){
     tagName:  "li",
 
     // Cache the template function for a single item.
-    template: _.template($('#item-template').html()),
+    template: _.template(templates.itemTemplate),
 
     // The DOM events specific to an item.
     events: {
@@ -156,10 +156,10 @@ $(function(){
 
     // Instead of generating a new element, bind to the existing skeleton of
     // the App already present in the HTML.
-    el: $("#todoapp"),
+    el: $("body"),
 
     // Our template for the line of statistics at the bottom of the app.
-    statsTemplate: _.template($('#stats-template').html()),
+    statsTemplate: _.template(templates.statsTemplate),
 
     // Delegated events for creating new items, and clearing completed ones.
     events: {
@@ -172,6 +172,8 @@ $(function(){
     // collection, when items are added or changed. Kick things off by
     // loading any preexisting todos that might be saved in *localStorage*.
     initialize: function() {
+
+      this.$el.html(_.template(templates.appTemplate)());
 
       this.input = this.$("#new-todo");
       this.allCheckbox = this.$("#toggle-all")[0];
