@@ -21,9 +21,11 @@ compact.addNamespace('todoapp', __dirname + '/public/javascripts/')
   .addJs('/vendor/jquery-1.7.1.js')
   .addJs('/vendor/underscore-1.3.1.js')
   .addJs('/vendor/backbone-0.9.1.js')
+  .addJs('/intro.js')
   .addJs('/templates.js')
   .addJs('/todos.js')
-  .addJs('/load.js');
+  .addJs('/load.js')
+  .addJs('/outro.js');
 
 // Configuration
 
