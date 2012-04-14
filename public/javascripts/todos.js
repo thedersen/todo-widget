@@ -3,8 +3,6 @@
 // [LocalStorage adapter](backbone-localstorage.html)
 // to persist Backbone models within your browser.
 
-// Load the application once the DOM is ready, using `jQuery.ready`:
-$(function(){
 
   // Todo Model
   // ----------
@@ -240,8 +238,3 @@ $(function(){
     }
 
   });
-
-  // Finally, we kick things off by creating the **App**.
-  var App = new AppView();
-
-});
