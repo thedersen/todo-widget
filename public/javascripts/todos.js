@@ -156,7 +156,7 @@ $(function(){
 
     // Instead of generating a new element, bind to the existing skeleton of
     // the App already present in the HTML.
-    el: $("body"),
+    el: $("#todoapp"),
 
     // Our template for the line of statistics at the bottom of the app.
     statsTemplate: _.template(templates.statsTemplate),
