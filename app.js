@@ -9,6 +9,21 @@ var express = require('express'),
 
 var app = module.exports = express.createServer();
 
+var compact = require('compact').createCompact({
+  srcPath: __dirname + '/public/javascripts/',
+  destPath: __dirname + '/public/widget/',
+  webPath: '/widget/',
+  debug: false
+});
+
+compact.addNamespace('todoapp', __dirname + '/public/javascripts/')
+  .addJs('/vendor/json2.js')
+  .addJs('/vendor/jquery-1.7.1.js')
+  .addJs('/vendor/underscore-1.3.1.js')
+  .addJs('/vendor/backbone-0.9.1.js')
+  .addJs('/templates.js')
+  .addJs('/todos.js');
+
 // Configuration
 
 app.configure(function(){
@@ -18,6 +33,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  app.use(compact.js(['todoapp']));
 });
 
 app.configure('development', function(){
