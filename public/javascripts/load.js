@@ -4,6 +4,10 @@ var injectHtml = function () {
     	rootUrl = src.substring(0, src.indexOf('widget')),
     	stylesheetUrl = rootUrl + 'stylesheets/todoapp.css';
 
+    if (!document.getElementById('todoapp')) {
+        $('<div id="todoapp"></div>').insertBefore(ourScriptTag);
+    }
+
     if (typeof document.createStyleSheet !== 'undefined') {
         document.createStyleSheet(stylesheetUrl);
     } else {
