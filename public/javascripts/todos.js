@@ -90,7 +90,7 @@ $(function(){
     tagName:  "li",
 
     // Cache the template function for a single item.
-    template: _.template(templates.itemTemplate),
+    template: _.template($('#item-template').html()),
 
     // The DOM events specific to an item.
     events: {
@@ -159,7 +159,7 @@ $(function(){
     el: $("#todoapp"),
 
     // Our template for the line of statistics at the bottom of the app.
-    statsTemplate: _.template(templates.statsTemplate),
+    statsTemplate: _.template($('#stats-template').html()),
 
     // Delegated events for creating new items, and clearing completed ones.
     events: {
