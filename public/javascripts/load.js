@@ -15,10 +15,21 @@ var injectHtml = function () {
     }
 };
 
+var configureRpc = function() {
+    todoapp.xhr = new easyXDM.Rpc({
+                            remote: 'http://localhost:8000/javascripts/easyXDM/cors/index.html',
+                        }, {
+                            remote: {
+                                request: {}
+                            }
+                        });
+}
+
 // Load the application once the DOM is ready, using `jQuery.ready`:
 $(function(){
 
 	injectHtml();
+    configureRpc();
 
   	// Finally, we kick things off by creating the **App**.
   	var App = new AppView();
