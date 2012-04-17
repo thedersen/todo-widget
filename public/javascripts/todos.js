@@ -49,7 +49,7 @@
     model: Todo,
 
     // Set the url property to reference its location on the server.
-    url: '/todos',
+    url: 'http://localhost:8000/todos',
 
     // Filter down the list of all todo items that are finished.
     done: function() {
