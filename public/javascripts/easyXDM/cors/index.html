@@ -7,7 +7,7 @@
         </script>
         <script type="text/javascript">
             // Update to point to your copy
-            easyXDM.DomHelper.requiresJSON("../json2.js");
+            easyXDM.DomHelper.requiresJSON("../../vendor/json2.js");
         </script>
         <script type="text/javascript">
         
@@ -56,7 +56,7 @@
         // this file is by default set up to use Access Control - this means that it will use the headers set by the server to decide whether or not to allow the call to return
         var useAccessControl = true;
         // always trusted origins, can be exact strings or regular expressions
-        var alwaysTrustedOrigins = [(/\.?easyxdm\.net/), (/xdm1/)];
+        var alwaysTrustedOrigins = [];
         
         // instantiate a new easyXDM object which will handle the request 
         var remote = new easyXDM.Rpc({
@@ -82,7 +82,7 @@
                         timeout: 10 * 1000
                     }, true);
                     
-                    var isPOST = config.method == "POST";
+                    var isPOST = config.method == "POST" || config.method == "PUT";
                     
                     // convert the data into a format we can send to the server 
                     var pairs = [];
