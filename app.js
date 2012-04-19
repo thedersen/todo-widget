@@ -8,27 +8,35 @@ var express = require('express'),
     todos = require('./routes/todos');
 
 var app = module.exports = express.createServer();
+var minify = process.env.NODE_ENV === 'production';
 
 var compact = require('compact').createCompact({
   srcPath: __dirname + '/public/javascripts/',
   destPath: __dirname + '/public/widget/',
   webPath: '/widget/',
-  debug: false
+  debug: !minify
 });
 
-compact.addNamespace('todoapp', __dirname + '/public/javascripts/')
+var ns = compact.addNamespace('todoapp', __dirname + '/public/javascripts/')
   .addJs('/vendor/json2.js')
   .addJs('/vendor/jquery-1.7.1.js')
   .addJs('/vendor/underscore-1.3.1.js')
   .addJs('/vendor/backbone-0.9.1.js')
-  .addJs('/easyXDM/easyXDM.debug.js')
-  .addJs('/intro.js')
-  .addJs('/backbone.easyXDM.js')
+  .addJs('/easyXDM/easyXDM.debug.js');
+
+if(minify) {
+  ns.addJs('/intro.js');
+}
+
+ns.addJs('/backbone.easyXDM.js')
   .addJs('/app.js')
   .addJs('/templates.js')
   .addJs('/todos.js')
-  .addJs('/load.js')
-  .addJs('/outro.js');
+  .addJs('/load.js');
+
+if(minify) {
+  ns.addJs('/outro.js');
+}
 
 // Configuration
 
@@ -59,6 +67,7 @@ app.all('/*', function(req, res, next) {
   next();
  });
 
+app.get('/', compact.js(['todoapp']));
 app.get('/', routes.index);
 
 app.get('/todos', todos.all);

@@ -1,5 +1,5 @@
 var injectHtml = function () {
-    var ourScriptTag = $('script[src*="todoapp.js"]').first(),
+    var ourScriptTag = $($.find('script[src*="todoapp.js"]')[0] || $.find('body script')[0]),
     	src = ourScriptTag.attr('src'),
     	rootUrl = src.substring(0, src.indexOf('widget')),
     	stylesheetUrl = rootUrl + 'stylesheets/todoapp.css';
